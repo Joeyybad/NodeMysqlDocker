@@ -1,4 +1,4 @@
- const express = require('express');
+const express = require('express');
 const db = require('./db');
 const app = express();
 app.use(express.json());
@@ -14,5 +14,5 @@ app.post('/users', async (req, res) => {
   res.status(201).send('User added');
 });
 
-app.listen(3000, () => console.log(Server running on port 3000));
+app.listen(3000, () => console.log("Server running on port 3000"));
 

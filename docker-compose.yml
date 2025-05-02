@@ -1,9 +1,10 @@
- version: 3.8
+version: "3.8"
+
 services:
   app:
     build: .
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -18,5 +19,10 @@ services:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: testdb
     ports:
-      - 3306:3306
+      - "3307:3306"
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"

@@ -1,12 +1,24 @@
- {
-  name: node-mysql-app,
-  version: 1.0.0,
-  main: app.js,
-  scripts: {
-    test: node test.js
+{
+  "name": "mysql-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js"
   },
-  dependencies: {
-    express: ^4.18.2,
-    mysql2: ^3.2.0
-  }
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.14.1"
+  },
+  "description": "travail sur les concepts Devops CI CD  docker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joeyybad/NodeMysqlDocker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joeyybad/NodeMysqlDocker/issues"
+  },
+  "homepage": "https://github.com/Joeyybad/NodeMysqlDocker#readme"
 }
