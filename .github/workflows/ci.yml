@@ -32,6 +32,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h 127.0.0.1 -uroot -pexample --silent; do
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
+
+      - name: Init DB schema
+        run: |
+          mysql -h 127.0.0.1 -uroot -pexample testdb < ./init.sql
+
       - name: Run tests
         run: npm test
         env:
@@ -40,3 +51,4 @@ jobs:
           DB_USER: root
           DB_PASSWORD: example
           DB_NAME: testdb
+
