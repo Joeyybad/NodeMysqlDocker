@@ -4,6 +4,8 @@ require('dotenv').config();
 const db = require('./db');
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+
 app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 app.set('views', './views');
@@ -15,9 +17,11 @@ app.get('/users', async (req, res) => {
 });
 
 app.post('/users', async (req, res) => {
+  console.log('req.body:', req.body);
   const { name } = req.body;
+  if (!name) return res.status(400).send("Le nom est requis");
   await db.query('INSERT INTO users (name) VALUES (?)', [name]);
-  res.status(201).send('User added');
+  res.redirect('/users');
 });
 
 app.post('/users/:id/delete', async (req, res) => {
@@ -32,6 +36,7 @@ app.post('/users/:id/delete', async (req, res) => {
   }
 });
 
+module.exports = app;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

@@ -11,14 +11,30 @@
         <tr>
             <th>ID</th>
             <th>Nom</th>
+            <th>supprimer</th>
         </tr>
         {{#each users}}
         <tr>
             <td>{{this.id}}</td>
             <td>{{this.name}}</td>
+            <td>
+                <form action="/users/{{this.id}}/delete" method="post">
+                    <button onclick="return confirm('Voulez-vous vraiment supprimer ?')" type="submit"
+                        aria-label="supprimer l'utilisateur"> Supprimer
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+
         </tr>
         {{/each}}
     </table>
+    <h2>Ajouter un utilisateur</h2>
+    <form action="/users" method="post">
+        <input type="text" name="name" placeholder="Nom de l'utilisateur" required>
+        <button type="submit">Ajouter</button>
+    </form>
 </body>
 
 </html>

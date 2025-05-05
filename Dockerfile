@@ -6,5 +6,5 @@ COPY . .
 
 RUN npm install
 
-CMD ["node", "app.js"]
+CMD ["node", "app.js", "dev"]
 
