@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../app');
-
+const db = require('../db');
 let server;
 
 beforeAll((done) => {
@@ -10,8 +10,9 @@ beforeAll((done) => {
     });
 });
 
-afterAll((done) => {
-    server.close(done);
+afterAll(async () => {
+    await db.close();
+    server.close();
 });
 
 describe('GET /users', () => {

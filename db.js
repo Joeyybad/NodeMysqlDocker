@@ -9,5 +9,8 @@ const pool = mysql.createPool({
   waitForConnections: true,
 });
 
-module.exports = pool;
+module.exports = {
+  query: (...args) => pool.query(...args),
+  close: () => pool.end()
+};
 
