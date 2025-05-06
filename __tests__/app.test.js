@@ -22,3 +22,20 @@ describe('GET /users', () => {
         expect(res.text).toContain("Alice");
     });
 });
+
+describe('POST /users', () => {
+    it('should insert a new user and return 302 (redirect)', async () => {
+        const res = await request(app)
+            .post('/users')
+            .send('name=TestUser')
+            .set('Content-Type', 'application/x-www-form-urlencoded');
+
+        expect(res.statusCode).toBe(302); // car on fait un redirect après ajout
+        expect(res.header['location']).toBe('/users');
+
+        // Vérifie que l'utilisateur a bien été inséré
+        const [rows] = await db.query('SELECT * FROM users WHERE name = ?', ['TestUser']);
+        expect(rows.length).toBeGreaterThan(0);
+        expect(rows[0].name).toBe('TestUser');
+    });
+});
